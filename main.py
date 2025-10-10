@@ -9,10 +9,16 @@ from agents.example_tool_calling_agent import ExampleToolCallingAgent
 from agents.example_code_agent import ExampleCodeAgent
 from agents.example_manager_agent import ExampleManagerAgent
 from ui.gradio_agent_ui import GradioAgentUI
+from phoenix.otel import register
+from openinference.instrumentation.smolagents import SmolagentsInstrumentor
 
 load_dotenv()
 
 MCP_CONFIG_PATH = os.getenv("MCP_CONFIG_PATH", "mcp_orchestration/mcp_config.json")
+
+# Initialize OpenTelemetry tracing with Phoenix and OpenInference
+register()
+SmolagentsInstrumentor().instrument()
 
 
 def main():
