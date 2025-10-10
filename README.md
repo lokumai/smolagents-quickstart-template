@@ -4,6 +4,7 @@ Ready-to-use template for building multi-agent apps with Smolagents. It ships wi
 - Gradio chat UI
 - MCP client manager
 - A manager agent coordinating two worker agents (tool-calling + code)
+- OpenTelemetry tracing support with Phoenix
 
 Use this as a minimal, extensible starting point to create your own agents, tools, and UIs.
 
@@ -76,6 +77,18 @@ uv run python app.py
 ```
 
 The terminal will print the Gradio URLs (local and a temporary share link). Open the printed URL in your browser to chat with the manager agent.
+
+## Tracing and Monitoring
+
+This template includes OpenTelemetry tracing support using Phoenix and OpenInference for Smolagents. Tracing is enabled by default to monitor agent interactions and performance.
+
+To inspect traces from your runs:
+
+```zsh
+python -m phoenix.server.main serve
+```
+
+You can then navigate to http://0.0.0.0:6006/projects/ to inspect your run!
 
 ## Architecture
 
