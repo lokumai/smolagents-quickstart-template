@@ -10,9 +10,12 @@ An agent that has access to tools `read_file`, `read_file_bulk`, `write_file`, `
 
 #### Implementing a **DeepAgent**: (~1 hour)
 
-An agent that has access to similar tools as the Baseline Agent PLUS `spawn_sub_agents` to create and run **Subagents** at runtime, a `list_workspace_dirs` tool or a set of complementary tools which gives the agent a **Virtual Filesystem**, and a `todo` tool or a set of complementary tools which gives the agent the ability for **Explicit Planning**.
+An agent that has access to similar tools as the Baseline Agent PLUS:
+1. `spawn_sub_agents`: To create and run **Subagents** at runtime.
+2. `list_workspace_dirs` (or similar): To provide a **Virtual Filesystem** for managing sub-agent outputs.
+3. `todo` (or similar): To enable **Explicit Planning** and task decomposition.
 
-These capabilities (Subagents, Virtual Filesystem, Planning) are must-haves since they are the ones that distinguish a simple ReAct agent from a DeepAgent. 
+These three capabilities (Subagents, Virtual Filesystem, Explicit Planning) are the key differentiators that distinguish a DeepAgent from a standard ReAct agent. 
 
 # Experimental Study
 
@@ -29,9 +32,9 @@ The more effort on this project EQUALS TO more achievements in your career.
 
 ## Dataset Collection and Pipeline Execution (MANDATORY) (~3 hours)
 
-In tutorial generation, we need a dataset that is contamination-free, meaning that the code repository is not trained by LLMs. Each LLM has a knowledge-cutoff date which you can find on the internet. You should gather, for example, 3 code repositories that are:
-- Not trained by LLMs (their creation date is after the knowledge-cutoff date)
-- Have sufficient size and lines of code (at least 10K LOC)
+In tutorial generation, we need a dataset that is **contamination-free**. This means the code repository must not have been part of the LLM's training data. Since every LLM has a specific knowledge-cutoff date, you should gather 3 code repositories that meet these criteria:
+- **Recent**: Created *after* the knowledge-cutoff date of the LLM you are using.
+- **Substantial**: Have sufficient size and complexity (at least 10K LOC) to warrant a tutorial.
 
 On these repositories, you will run 2 pipelines:
 - Pipeline 1: The baseline agent that generates tutorials for each repository in markdown format.
@@ -73,15 +76,21 @@ A/B testing means: they compare the 2 tutorials and select the best one (the one
 Likert: They score each tutorial on a scale of 1-5
 
 They should consider 3 criteria:
-1. Fidelity (code match or factual correctness)
-2. Pedagogy (clarity for novices)
-3. Coverage (high-level flows)
+They should evaluate based on 3 criteria:
+1. **Fidelity**: Is the code accurate? Does it match the actual codebase? (Fact-checking)
+2. **Pedagogy**: Is it easy for a beginner to understand? Is the structure logical?
+3. **Coverage**: Does it cover the most important parts of the system? (Completeness)
 
 ## Experiment 2 (MANDATORY): Eval using LLM-as-judge (~30 min)
-Similar to Experiment 1, but instead of humans, a secondary Agent does the A/B testing and Likert scoring using the criteria above.
+Similar to Experiment 1, but instead of human experts, we use a **SOTA (State-of-the-Art) AI Model** as the judge.
 
-For the judge, I suggest using the Vibe-coding tools you have such as Gemini CLI or Github Copilot. You clone the codebase, give the tutorials to Copilot, and ask it to judge.
-Here N = 3 (means at least 3 LLM models judge).
+**Recommended Judge:** Use a "Vibe-coding" tool that has codebase awareness, such as **GitHub Copilot**, **Gemini CLI**, **Antigravity** or others.
+**Procedure:**
+1. Open the repository in the tool.
+2. Provide both tutorials to the tool.
+3. Ask it to evaluate them based on the 3 criteria above (Fidelity, Pedagogy, Coverage) and pick a winner.
+
+Here N = 4 (use 4 different models if possible, e.g., GPT, Cluade, Gemini, Grok).
 
 NOTE: Finally you can create a win-rate table to add results of both expert and llm-as-judge to aggregate all results. 
 
@@ -92,7 +101,7 @@ N at least must be N=5.
 NOTE: if you do this, also add it to win-rate table.
 
 ## Experiment 4 (MANDATORY): Cost/Context Analysis (~30 min)
-At runtime when we are generating the tutorials (not the knowledge base, only the tutorials) we can analyze the context of the Agent/LLM in 3 ways:
+At runtime, during the **Tutorial Generation phase** (excluding the Knowledge Base generation time), measure the following metrics:
 
 1. **Overall Cost:** How many tokens are in the agent's context at the end of the tutorial generation? (main agent vs baseline agent) (DO NOT CONSIDER SUBAGENTS!). This is similar to counting how much money we spent overall, but instead of dollars, we count tokens.
 
