@@ -115,6 +115,8 @@ Agent context initially has 5K tokens -> Agent calls 1 tool by generating 1K tok
 - **Overall Cost** = 5K + 1K + 3.5K = 9.5K
 - **Tool Calls** = 1 
 
+NOTE: For calculating the number of tokens you can use `tiktoken` library in Python. 
+
 ## Experiment 5 (OPTIONAL): Ablation Study (~3 hours)
 Ablation study means analyzing a system by removing/adding its internal components to see how much each component contributes to the overall success of the system.
 
@@ -122,3 +124,5 @@ Here you can do ablation for Experiment 2 and 4 by:
 - Removing the knowledge base and doing experiments again
 
 The results will show if the knowledge base has any effect in the overall system success or not. For example, if without the knowledge base we see the results become worse, it means that the knowledge base is useful. If there is no change in results, it means that the knowledge base is not that useful!
+
+Normally in Ablation Studies we expect to see lower metric values when removing a feature, because initially we hypothised that the feature we added is useful. But sometimes it does not make a difference, or it even makes the results worse! Which implies that the feature we added is not that useful.
