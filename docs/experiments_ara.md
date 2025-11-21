@@ -115,7 +115,19 @@ Agent context initially has 5K tokens -> Agent calls 1 tool by generating 1K tok
 - **Overall Cost** = 5K + 1K + 3.5K = 9.5K
 - **Tool Calls** = 1 
 
-NOTE: For calculating the number of tokens you can use `tiktoken` library in Python. 
+You can report your results in a table like below (showing values for each codebase):
+
+| Codebase            | Metric                | Baseline Agent | DeepAgent |
+| :------------------ | :-------------------- | :------------- | :-------- |
+| **TOON**            | Overall Cost (Tokens) | 125,400        | 98,200    |
+|                     | Tool Calls            | 45             | 23        |
+|                     | Context Overflow      | 2              | 0         |
+| **Agent Lightning** | Overall Cost (Tokens) | 110,000        | 85,000    |
+|                     | Tool Calls            | 30             | 15        |
+|                     | Context Overflow      | 1              | 0         |
+| **...**             | ...                   | ...            | ...       |
+
+NOTE: For calculating the number of tokens you can use `tiktoken` library in Python.
 
 ## Experiment 5 (OPTIONAL): Ablation Study (~3 hours)
 Ablation study means analyzing a system by removing/adding its internal components to see how much each component contributes to the overall success of the system.
@@ -123,6 +135,15 @@ Ablation study means analyzing a system by removing/adding its internal componen
 Here you can do ablation for Experiment 2 and 4 by:
 - Removing the knowledge base and doing experiments again
 
+Below is an example table for ablation study: 
+
+| Metric                      | DeepAgent (with KB) | DeepAgent (without KB) |
+| :-------------------------- | :------------------ | :--------------------- |
+| **Exp 2: Win Rate**         | 80%                 | 65%                    |
+| **Exp 4: Overall Cost**     | 98,200              | 115,000                |
+| **Exp 4: Tool Calls**       | 23                  | 35                     |
+| **Exp 4: Context Overflow** | 0                   | 1                      |
+
 The results will show if the knowledge base has any effect in the overall system success or not. For example, if without the knowledge base we see the results become worse, it means that the knowledge base is useful. If there is no change in results, it means that the knowledge base is not that useful!
 
-Normally in Ablation Studies we expect to see lower metric values when removing a feature, because initially we hypothised that the feature we added is useful. But sometimes it does not make a difference, or it even makes the results worse! Which implies that the feature we added is not that useful.
+Normally in Ablation Studies we expect to see lower metric values when removing a feature, because initially we hypothised that the feature we added is useful. But sometimes it does not make a difference, or it even makes the results better! Which implies that the feature we added is not that useful.
