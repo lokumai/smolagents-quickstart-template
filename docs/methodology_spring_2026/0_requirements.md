@@ -23,7 +23,7 @@ You must understand the vocabulary and the basic mechanics of modern AI architec
 ---
 
 ## Part 2: Environment Setup (What to Do)
-As an AI researcher and software engineer, your tooling must be flawless. Follow these steps to set up your "Vibe-Coding" environment.
+As an AI researcher and software engineer, your tooling must be flawless. Follow these steps to set up your "Vibe-Coding" environment. You are not allowed to write code in this project, but you should prompt Code Agents in tools such as Copilot and Antigravity to write code for you.
 
 ### 1. Version Control Setup
 - [ ] **Learn Git & GitHub:** If you do not know Git, take a crash course. You must know how to commit, push, pull, and branch.
