@@ -9,7 +9,7 @@ to briefly summarize, in this project you will implement two different code agen
 ## Prerequisites
 
 #### Vibe-Coding Tools with MCP
-Have your vibe-coding tools ready. Any tool you choose, MUST be connected to DeepWiki MCP and LangChain MCP servers. Both of these tools allow your AI agents to query the latest LangChain/Deep-Agents documentation in real-time and write proper code for you.
+Have your vibe-coding tools ready. Any tool you choose, MUST be connected to DeepWiki MCP and LangChain MCP servers. Both of these tools allow your AI agents to query the latest LangChain/Deep-Agents documentation in real-time and write proper code for you. NEVER forget to ask the tool to use DeepWiki MCP and LangChain MCP servers in your prompts. 
 As for the LLM in your vibe-coding tool, you can use any model you want, but it is recommended to use "Gemini Flash 3.0" and "GPT 5.4 mini" which are both capabale and cost-effective. Otherwise your monthly credit will run out soon.
 
 #### API Key
@@ -56,6 +56,8 @@ Give agent access to any code repository you want and ask it to answer questions
 For this project, we will have one frontend and one backend repositories. For the frontend for now use the UI provided by LangChain and create a github repository for it in your github account. Also create another repository for the backend in your github account. 
 
 All your codes should be always in your github account and you should commit and push the latest version of your code regularly. You should use git effectively, and frequenelty even for small changes, commit and push your code.
+
+If you add Github MCP server to your vibe-coding tools, your vibe-coding tool can manage git operations for you. 
 
 Share the links of these repositories with me and add me as collaborator.
 My github: https://github.com/amirkiarafiei
